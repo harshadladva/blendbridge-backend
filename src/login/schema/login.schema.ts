@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type UserDocument = Users & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Users {
   static readonly schemaName = 'users';
 

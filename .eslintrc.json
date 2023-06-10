@@ -1,0 +1,198 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": ["plugin:nestjs/recommended"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "quotes": ["off", "single"],
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "dot-notation": "off",
+        "@typescript-eslint/dot-notation": "off",
+        "provided-injected-should-match-factory-parameters": "off",
+        "injectable-should-be-provided": "off",
+        "param-decorator-name-matches-route-param": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "off",
+          {
+            "accessibility": "explicit"
+          }
+        ],
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/naming-convention": [
+          "off",
+          {
+            "selector": "default",
+            "format": ["camelCase"]
+          },
+          {
+            "selector": "variable",
+            "format": ["PascalCase", "UPPER_CASE"],
+            "types": ["boolean"],
+            "prefix": ["is", "should", "has", "can", "did", "will"]
+          },
+          {
+            "selector": "variableLike",
+            "format": ["camelCase", "UPPER_CASE", "PascalCase"]
+          },
+
+          {
+            "selector": "parameter",
+            "format": ["camelCase"]
+          },
+          {
+            "selector": "memberLike",
+            "modifiers": ["private"],
+            "format": ["camelCase"],
+            "leadingUnderscore": "forbid"
+          },
+          {
+            "selector": "typeLike",
+            "format": ["PascalCase"]
+          },
+          {
+            "selector": "property",
+            "modifiers": ["readonly"],
+            "format": ["PascalCase"]
+          },
+          {
+            "selector": "enumMember",
+            "format": ["UPPER_CASE"]
+          }
+        ],
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-inferrable-types": [
+          "off",
+          {
+            "ignoreParameters": true
+          }
+        ],
+        "@typescript-eslint/no-misused-new": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": [
+          "off",
+          {
+            "hoist": "all"
+          }
+        ],
+        "@typescript-eslint/no-unused-expressions": [
+          "off",
+          {
+            "allowTernary": true
+          }
+        ],
+        "no-unused-labels": "error",
+        "unicorn/no-fn-reference-in-iterator": "off",
+        "unicorn/no-array-for-each": "off",
+        "unicorn/no-null": "off",
+        "unicorn/consistent-destructuring": "off",
+        "unicorn/no-array-reduce": "off",
+        "unicorn/prefer-spread": "off",
+        "unicorn/no-array-callback-reference": "off",
+        "unicorn/consistent-function-scoping": "off",
+        "unicorn/no-useless-undefined": "off",
+        "no-duplicate-imports": "error",
+        "unused-imports/no-unused-imports-ts": "error",
+        "@typescript-eslint/prefer-function-type": "off",
+        "@typescript-eslint/unified-signatures": ["off"],
+        "@typescript-eslint/array-type": ["off", { "default": "array" }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["off"],
+        "arrow-body-style": "error",
+        "constructor-super": "error",
+        "eqeqeq": "off",
+        "guard-for-in": "error",
+        "id-denylist": "off",
+        "id-match": "off",
+        "import/no-deprecated": "warn",
+        "import/newline-after-import": "error",
+        "no-bitwise": "error",
+        "no-caller": "error",
+        "no-console": [
+          "off",
+          {
+            "allow": ["warn", "error"]
+          }
+        ],
+        "no-debugger": "error",
+        "no-empty": "off",
+        "no-empty-function": "off",
+        "no-eval": "error",
+        "no-fallthrough": "error",
+        "no-new-wrappers": "error",
+        "no-restricted-imports": ["error", "rxjs/Rx"],
+        "no-throw-literal": "error",
+        "no-undef-init": "error",
+        "no-underscore-dangle": "off",
+        "no-unused-expressions": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "radix": "error",
+        "curly": "error",
+        "padding-line-between-statements": "off",
+
+        "@typescript-eslint/padding-line-between-statements": [
+          "off",
+          {
+            "blankLine": "always",
+            "prev": [
+              "directive",
+              "class",
+              "function",
+              "block",
+              "interface",
+              "type",
+              "switch",
+              "try",
+              "while"
+            ],
+            "next": "*"
+          },
+          {
+            "blankLine": "always",
+            "prev": "*",
+            "next": [
+              "directive",
+              "class",
+              "function",
+              "block",
+              "interface",
+              "type",
+              "switch",
+              "try",
+              "while"
+            ]
+          },
+          {
+            "blankLine": "always",
+            "prev": "if",
+            "next": "if"
+          }
+        ],
+        "lines-between-class-members": [
+          "error",
+          "always",
+          { "exceptAfterSingleLine": true }
+        ],
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "error",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ]
+      },
+      "plugins": ["eslint-plugin-import", "nestjs", "unused-imports"]
+    }
+  ]
+}

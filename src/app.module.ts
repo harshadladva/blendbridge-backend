@@ -3,14 +3,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoginModule } from './login/login.module';
-import { MongoConfigService } from './providers/mongo.service';
 
 @Module({
   imports: [
     LoginModule,
-    MongooseModule.forRootAsync({
-      useClass: MongoConfigService,
-    }),
+    MongooseModule.forRoot(
+      'mongodb://blendbridge:blendbridge123@localhost:27017/blendbridge'
+    ),
   ],
   controllers: [AppController],
   providers: [AppService],

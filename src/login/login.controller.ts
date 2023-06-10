@@ -1,8 +1,10 @@
-/*
-https://docs.nestjs.com/controllers#controllers
-*/
-
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller()
-export class LoginController {}
+export class LoginController {
+
+    @Get('/users')
+    private loginUser() {
+        
+    }
+}
