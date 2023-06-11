@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoginModule } from './login/login.module';
 import { MongoConfigService } from './providers/mongo.service';
+import { ScrapperController } from './scrapper/scrapper.controller';
+import { ScrapperService } from './scrapper/scrapper.service';
 
 @Module({
   imports: [
@@ -12,7 +14,7 @@ import { MongoConfigService } from './providers/mongo.service';
       useClass: MongoConfigService,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, ScrapperController],
+  providers: [AppService, ScrapperService],
 })
 export class AppModule {}
