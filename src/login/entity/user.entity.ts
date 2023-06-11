@@ -102,6 +102,4 @@ export class LoginUser {
   @IsDefined()
   @IsString()
   password: string;
-
-  constructor(body: LoginUser) {}
 }

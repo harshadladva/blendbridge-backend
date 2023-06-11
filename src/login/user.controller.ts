@@ -2,8 +2,9 @@ import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
 import { API_END_POINTS } from '../common/types/api-end-points';
 import { CreateUserDto } from './entity/create-user';
 import { UserService } from './services/user.service';
+import { LoginUser } from './entity/user.entity';
 
-@Controller('user')
+@Controller()
 export class UserController {
   constructor(private userService: UserService) {}
 
@@ -17,4 +18,10 @@ export class UserController {
       });
     }
   }
+
+  @Post(API_END_POINTS.login)
+  private async loginUser(@Body() loginData: LoginUser): Promise<boolean> {
+    return await this.userService.login(loginData);
+  }
+
 }
