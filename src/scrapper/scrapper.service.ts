@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 import { chromium } from 'playwright';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import companies from '../../companies.json';
+import { companies } from '../../companies.json';
 
 const RESULT_PATH = './results/';
 
@@ -90,6 +90,7 @@ export class ScrapperService {
     try {
       const page = await this.getPage();
       const jobs = [];
+      console.log(companies);
       for (const company of companies) {
         const jobPosts = await this.fetchJobs(company, page);
         jobs.push(...jobPosts);

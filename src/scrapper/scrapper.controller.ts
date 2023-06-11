@@ -3,11 +3,11 @@ import {
   Get,
   HttpException,
   HttpStatus,
-  Post,
+  Param,
 } from '@nestjs/common';
 import { ScrapperService } from './scrapper.service';
 
-@Controller('scrapper')
+@Controller('joblisting')
 export class ScrapperController {
   constructor(public scrapperService: ScrapperService) {}
 
@@ -16,8 +16,8 @@ export class ScrapperController {
     return this.scrapperService.getSavedJSON();
   }
 
-  @Get('fetch-jobs/:company')
-  async fetchJobs(company: string) {
+  @Get(':company')
+  async fetchJobs(@Param('company') company: string) {
     try {
       const page = await this.scrapperService.getPage();
       const jobs = await this.scrapperService.fetchJobs(company, page);
@@ -31,7 +31,7 @@ export class ScrapperController {
     }
   }
 
-  @Post()
+  @Get('prepare')
   async prepare() {
     return this.scrapperService.prepare();
   }
