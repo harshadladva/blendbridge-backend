@@ -82,7 +82,7 @@ export abstract class EntityRepository<T extends Document> {
     updateEntityData: UpdateQuery<unknown>,
     options: object = {}
   ): Promise<unknown> {
-    return await this.entityModel.updateMany(
+    return this.entityModel.updateMany(
       entityFilterOption,
       updateEntityData,
       options

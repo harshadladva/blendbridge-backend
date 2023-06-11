@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { YesNoMaybe } from '../entity/user.entity';
 
 export type UserDocument = Users & Document;
 
@@ -19,17 +20,35 @@ export class Users {
   @Prop({ type: String })
   address: string;
 
-  @Prop({ type: String })
-  status: string;
-
-  @Prop({ type: String })
-  tokenHash: string;
+  @Prop({ type: Boolean, default: true })
+  status: boolean;
 
   @Prop({ type: String, required: false })
   profileImage: string;
 
   @Prop({ type: String })
-  contact: string;
+  mobileNumber: string;
+
+  @Prop({ type: String })
+  resume: string;
+
+  @Prop({ type: String })
+  currentCompany: string;
+
+  @Prop({ type: String })
+  currentJobProfile: string;
+
+  @Prop({ type: String })
+  dreamCompany: string;
+
+  @Prop({ type: String, default: YesNoMaybe.YES })
+  feelCourseForAchivingDreamJobIsCorrect: YesNoMaybe;
+
+  @Prop({ type: String })
+  whatYoubelieveNotInyourFavour: string;
+
+  @Prop({ type: Number, default: 5, min: 1, max: 5 })
+  appRating: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(Users);
