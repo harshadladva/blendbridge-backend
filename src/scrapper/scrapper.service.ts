@@ -90,7 +90,6 @@ export class ScrapperService {
     try {
       const page = await this.getPage();
       const jobs = [];
-      console.log(companies);
       for (const company of companies) {
         const jobPosts = await this.fetchJobs(company, page);
         jobs.push(...jobPosts);

@@ -16,6 +16,11 @@ export class ScrapperController {
     return this.scrapperService.getSavedJSON();
   }
 
+  @Get('prepare')
+  async prepare() {
+    return this.scrapperService.prepare();
+  }
+
   @Get(':company')
   async fetchJobs(@Param('company') company: string) {
     try {
@@ -29,10 +34,5 @@ export class ScrapperController {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
-  }
-
-  @Get('prepare')
-  async prepare() {
-    return this.scrapperService.prepare();
   }
 }
