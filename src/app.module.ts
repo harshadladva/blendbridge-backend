@@ -6,14 +6,10 @@ import { LoginModule } from './login/user.module';
 import { UserController } from './login/user.controller';
 import { ScrapperController } from './scrapper/scrapper.controller';
 import { ScrapperService } from './scrapper/scrapper.service';
-
+const MONGO_DSN =
+  'mongodb+srv://riteshdavra:5MSiiGPTDhx59fYk@blendbridgedb.w4kndm4.mongodb.net/blendbridge?retryWrites=true&w=majority';
 @Module({
-  imports: [
-    MongooseModule.forRoot(
-      'mongodb://blendbridge:blendbridge123@localhost:27017/blendbridge'
-    ),
-    LoginModule,
-  ],
+  imports: [MongooseModule.forRoot(MONGO_DSN), LoginModule],
   controllers: [AppController, UserController, ScrapperController],
   providers: [AppService, ScrapperService],
 })
