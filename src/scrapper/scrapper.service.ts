@@ -29,7 +29,7 @@ export class ScrapperService {
     return text;
   }
 
-  private slugify(str) {
+  public slugify(str) {
     return str
       .toLowerCase()
       .trim()
