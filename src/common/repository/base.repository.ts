@@ -20,7 +20,6 @@ export abstract class EntityRepository<T extends Document> {
       .findOne(entityFilterOption, {
         ...projection,
         _id: 0,
-        __v: 0,
       })
       .exec();
   }

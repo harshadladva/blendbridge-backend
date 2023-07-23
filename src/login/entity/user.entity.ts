@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   IsBase64,
   IsBoolean,
@@ -12,6 +13,8 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { encryptPassword } from '../services/password.helper';
+import { UserRepository } from '../repository/user.repository';
 
 export enum YesNoMaybe {
   YES = 'yes',
@@ -26,8 +29,6 @@ export class Users {
   email: string;
 
   @IsNotEmpty()
-  @IsString()
-  @IsStrongPassword()
   @IsDefined()
   password: string;
 
@@ -90,6 +91,13 @@ export class Users {
   @Min(1)
   @Max(5)
   appRating: number;
+
+  constructor(private userRepository: UserRepository) {}
+
+  async isEmailAlreadyRegistered(params: unknown): Promise<boolean> {
+    const isAlreadyRegistered = await this.userRepository.find(params);
+    return !!isAlreadyRegistered;
+  }
 }
 
 export class LoginUser {

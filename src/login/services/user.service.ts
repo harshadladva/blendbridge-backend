@@ -2,9 +2,15 @@
 https://docs.nestjs.com/providers#services
 */
 
-import { Injectable, Logger } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  Logger,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { LoginUser, Users } from '../entity/user.entity';
 import { UserRepository } from '../repository/user.repository';
+import { decryptPassword, encryptPassword } from './password.helper';
 
 @Injectable()
 export class UserService {
@@ -13,15 +19,37 @@ export class UserService {
   constructor(private userRepository: UserRepository) {}
 
   async register(userData: Users) {
-    return await this.userRepository.create(userData);
+    const decryptPassword = await encryptPassword(userData.password);
+    const isAlreadyRegistered = await this.userRepository.find({
+      $or: [{ email: userData.email }, { phone: userData.mobileNumber }],
+    });
+    if (isAlreadyRegistered) {
+      throw new ConflictException({
+        message:
+          'You are already registered with same email or mobile. Please use unique mobile number or email.',
+      });
+    }
+    return await this.userRepository.create({
+      ...userData,
+      password: decryptPassword,
+    });
   }
 
   async login(loginData: LoginUser): Promise<boolean> {
-    return await this.isUserLogin(loginData.email);
+    const isUserLoggedIn = await this.isUserLogin(loginData);
+    if (!isUserLoggedIn) {
+      throw new UnauthorizedException({
+        message: 'Invalid password',
+      });
+    }
+    return true;
   }
 
-  async isUserLogin(email: string): Promise<any> {
-    const user = await this.userRepository.find({ email: email });
-    console.log('usere', user);
+  async isUserLogin(loginData: LoginUser): Promise<boolean> {
+    const user = await this.userRepository.findOne(
+      { email: loginData.email },
+      { password: 1 }
+    );
+    return await decryptPassword(loginData.password, user.password);
   }
 }

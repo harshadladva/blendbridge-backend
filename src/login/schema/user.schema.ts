@@ -8,7 +8,7 @@ export type UserDocument = Users & Document;
 export class Users {
   static readonly schemaName = 'users';
 
-  @Prop({ type: String })
+  @Prop({ type: String, unique: true })
   email: string;
 
   @Prop({ type: String })

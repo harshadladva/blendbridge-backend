@@ -1,5 +1,5 @@
-import { UserController } from './user.controller';
 import { UserService } from './services/user.service';
+import { UserController } from './user.controller';
 /*
 https://docs.nestjs.com/modules
 */
@@ -8,7 +8,6 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserRepository } from './repository/user.repository';
 import { UserSchema, Users } from './schema/user.schema';
-import { HashService } from './services/hash.service';
 
 @Module({
   imports: [
@@ -21,7 +20,7 @@ import { HashService } from './services/hash.service';
     ]),
   ],
   controllers: [UserController],
-  providers: [UserService, HashService, UserRepository],
-  exports: [UserService, HashService, UserRepository],
+  providers: [UserService, UserRepository],
+  exports: [UserService, UserRepository],
 })
 export class LoginModule {}
